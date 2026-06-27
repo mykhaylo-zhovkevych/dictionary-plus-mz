@@ -95,7 +95,7 @@ export function getStyles(placement, popUpHeight, popUpWidth, theme) {
     }
 
     .content {
-      min-height: 80px;
+      min-height: 15vh;
       padding-bottom: 12px;
     }
 

@@ -4,8 +4,8 @@ const LOADING_MESSAGE = browser.i18n.getMessage('loadingMessage');
 const NO_DEFINITION_MESSAGE = browser.i18n.getMessage('noDefinitionMessage');
 const OPENED_POPUPS = {};
 
-const popUpWidth = 330;
-const popUpHeight = 220;
+const popUpWidth = 300;
+const popUpHeight = 300;
 
 let SETTINGS = {};
 
@@ -77,18 +77,8 @@ function getPlacementCoords(width, height, beakSize, boundingRect) {
     position = 'top';
   }
 
-  const coords = {
-    top: startingPointY,
-    left: centerX - beakSize / 2,
-    offsetLeft: offsetLeft,
-    position: position
-  };
-
-  return coords;
+  return {top: startingPointY, left: centerX, offsetLeft: offsetLeft, position: position};
 }
-
-
-
 
 
 function createPopUp() {
@@ -99,19 +89,13 @@ function createPopUp() {
 
   // Components declaration
   let style = document.createElement('style');
-  let wrapper = document.createElement('div'); // outer wrapper for the popup used for shadow dom
+  let wrapper = document.createElement('div');
   let shadow = wrapper.attachShadow({mode: 'open'});
 
   // Initialization
-  // Why this is needed?
+  // assigns random id for popup
   const key = generateRandomKey();
-
-  // is this truelly needed
   wrapper.setAttribute('class', 'dictionary-plus-popup-wrapper');
-
-
-
-
 
   const placement = getPlacementCoords(popUpWidth, popUpHeight, 10, selectionData);
 
@@ -199,21 +183,20 @@ function createPopUp() {
   container.appendChild(beak);
   container.appendChild(popup);
 
-  popup.appendChild(header);
+  footer.appendChild(btnSave);
+  footer.appendChild(labelSave);
+  footer.appendChild(linkMore);
   header.appendChild(btnClose);
   header.appendChild(btnListen);
   header.appendChild(term);
-
-  popup.appendChild(content);
   content.appendChild(phonetic);
   content.appendChild(type);
   content.appendChild(definition);
   content.appendChild(example);
 
+  popup.appendChild(header);
+  popup.appendChild(content);
   popup.appendChild(footer);
-  footer.appendChild(btnSave);
-  footer.appendChild(labelSave);
-  footer.appendChild(linkMore);
 
   document.body.appendChild(wrapper);
 

@@ -19,7 +19,9 @@
   "host_permissions": [
     "https://www.google.com/*",
     "https://uk.search.yahoo.com/*",
-    "https://search.yahoo.com/*"
+    "https://search.yahoo.com/*",
+    "https://de.wiktionary.org/*",
+    "https://ru.wiktionary.org/*"
   ],
   "background": {
     "scripts": ["background.js"],
